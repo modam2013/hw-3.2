@@ -69,5 +69,20 @@ public class StudentController {
       @RequestPart("avatar") MultipartFile multipartFile) {
     return studentService.uploadAvatar(id, multipartFile);
   }
+  @GetMapping("count")
+  public Integer getCountOfStudents() {
+    return studentService.getCountOfStudents();
+  }
+
+  @GetMapping("averageAge")
+  public Integer getAverageAge() {
+    return (int) studentService.getAverageAge();
+  }
+  @GetMapping("/lastStudents")
+  public List<StudentDtoOut>getLastStudents (
+          @RequestParam(value = "count",defaultValue = "5",required = false)int count){
+    return studentService.getLastStudents(Math.abs(count));
+  }
+
 
 }
